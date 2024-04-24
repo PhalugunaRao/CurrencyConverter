@@ -1,4 +1,4 @@
-package com.currency
+package com.currency.data
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,5 +1,7 @@
+package com.currency.repo
+
 import android.util.Log
-import com.currency.CurrencyRatesService
+import com.currency.api.CurrencyRatesService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

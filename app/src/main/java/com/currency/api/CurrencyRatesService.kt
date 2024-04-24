@@ -1,5 +1,6 @@
-package com.currency
+package com.currency.api
 
+import com.currency.data.CurrencyResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

@@ -1,70 +1,76 @@
-package com.currency
+package com.currency.ui
 
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.currency.databinding.ActivityMainBinding
+import com.currency.viewmodel.CurrencyRatesViewModel
+import com.currency.util.CurrencyUtils
+import com.currency.R
+import com.currency.databinding.ConvertLayoutBinding
 import java.text.DecimalFormat
 
-import androidx.appcompat.app.AppCompatActivity
-import com.currency.databinding.ConvertLayoutBinding
-
-
-class ConvertActivity: AppCompatActivity() {
+class CurrencyConvertActivity : AppCompatActivity() {
     private lateinit var viewModel: CurrencyRatesViewModel
     lateinit var binding: ConvertLayoutBinding
     private lateinit var baseCurrency: String
+    private lateinit var targetCurrency: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.convert_layout)
 
         viewModel = ViewModelProvider(this).get(CurrencyRatesViewModel::class.java)
         binding.lifecycleOwner = this
+        baseCurrency = CurrencyUtils.baseCurrencies[0] // Set default base currency
+        targetCurrency = CurrencyUtils.targetCurrencies[0]
+
         setupSpinners()
 
         binding.buttonConvert.setOnClickListener {
             val amountString = binding.editTextAmount.text.toString()
             if (amountString.isNotEmpty()) {
                 val amount = amountString.toDouble()
-                val baseCurrency = binding.spinnerBaseCurrency.selectedItem.toString()
-                val targetCurrency = binding.spinnerTargetCurrency.selectedItem.toString()
-                convertCurrency(amount, baseCurrency, targetCurrency)
+                convertCurrency(amount)
             }
         }
+
     }
 
     private fun setupSpinners() {
-        // Set up base currency spinner
-        viewModel.currencyRates.observe(this) { rates ->
-            println("===$rates")
-            rates?.let {
-                val currencies = it.keys.toList()
-                val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, currencies)
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                binding.spinnerBaseCurrency.adapter = adapter
-            }
-        }
+        val baseCurrencyAdapter = ArrayAdapter(
+            this,
+            R.layout.spinner_item_layout,  // Use custom layout
+            CurrencyUtils.baseCurrencies
+        )
+        binding.spinnerBaseCurrency.adapter = baseCurrencyAdapter
 
-        // Set up target currency spinner
-        viewModel.currencyRates.observe(this) { rates ->
-            println("333===$rates")
-            rates?.let {
-                val currencies = it.keys.toList()
-                val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, currencies)
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                binding.spinnerTargetCurrency.adapter = adapter
-            }
-        }
+
 
         binding.spinnerBaseCurrency.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-
-                baseCurrency = binding.spinnerBaseCurrency.selectedItem.toString()
+                baseCurrency = CurrencyUtils.baseCurrencies[position]
                 viewModel.fetchCurrencyRates(baseCurrency)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Do nothing
+            }
+        }
+
+        val targetCurrencyAdapter = ArrayAdapter(
+            this,
+            R.layout.spinner_item_layout,  // Use custom layout
+            CurrencyUtils.targetCurrencies
+        )
+        binding.spinnerTargetCurrency.adapter = targetCurrencyAdapter
+
+        binding.spinnerTargetCurrency.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                targetCurrency = CurrencyUtils.targetCurrencies[position]
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -73,7 +79,7 @@ class ConvertActivity: AppCompatActivity() {
         }
     }
 
-    private fun convertCurrency(amount: Double, baseCurrency: String, targetCurrency: String) {
+    private fun convertCurrency(amount: Double) {
         viewModel.currencyRates.value?.let { rates ->
             val baseRate = rates[baseCurrency]
             val targetRate = rates[targetCurrency]

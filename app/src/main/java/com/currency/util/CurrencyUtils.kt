@@ -1,7 +1,8 @@
-package com.currency
+package com.currency.util
 
 object CurrencyUtils {
 
+    val API_KEY = "2f18edc1b984a6fe948b6d40deee0d43"
     val baseCurrencies = arrayOf("EUR", "AFN", "ALL", "AMD", "ANG", "AOA", "ARS", "AUD", "AWG", "AZN",
         "BAM", "BBD", "BDT", "BGN", "BHD", "BIF", "BMD", "BND", "BOB", "BRL",
         "BSD", "BTC", "BTN", "BWP", "BYN", "BYR", "BZD", "CAD", "CDF", "CHF",
