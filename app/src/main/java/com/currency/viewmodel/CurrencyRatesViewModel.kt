@@ -1,6 +1,5 @@
-package com.currency
-import CurrencyRatesRepository
-import androidx.lifecycle.LiveData
+package com.currency.viewmodel
+import com.currency.repo.CurrencyRatesRepository
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

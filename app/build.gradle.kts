@@ -8,6 +8,7 @@ buildscript {
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -45,6 +46,7 @@ android {
         jvmTarget = "1.8"
     }
 
+
 }
 
 dependencies {
@@ -72,7 +74,12 @@ dependencies {
     implementation ("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2")
     implementation ("com.github.PhilJay:MPAndroidChart:v3.0.2")
 
+    val room_version = "2.6.1"
 
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    kapt ("androidx.room:room-compiler:$room_version")
 
-
+    implementation ("com.intuit.sdp:sdp-android:1.0.6")
+    implementation ("com.intuit.ssp:ssp-android:1.0.6")
 }

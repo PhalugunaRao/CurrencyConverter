@@ -3,7 +3,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.currency.CurrencyRatesViewModel" />
+            type="com.currency.viewmodel.CurrencyRatesViewModel" />
     </data>
     <LinearLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"

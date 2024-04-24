@@ -1,4 +1,4 @@
-package com.currency
+package com.currency.data
 
 data class CurrencyRate(
     val currency: String,

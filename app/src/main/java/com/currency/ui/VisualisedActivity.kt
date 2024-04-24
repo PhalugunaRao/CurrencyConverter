@@ -1,11 +1,11 @@
-package com.currency
+package com.currency.ui
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.currency.R
 import com.currency.databinding.ChartLayoutBinding
-import android.graphics.Color
-import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
@@ -15,9 +15,10 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import org.json.JSONObject
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.ArrayList
+import java.util.Locale
 
-class ChartActivity : AppCompatActivity() {
+class VisualisedActivity : AppCompatActivity() {
     lateinit var binding: ChartLayoutBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
