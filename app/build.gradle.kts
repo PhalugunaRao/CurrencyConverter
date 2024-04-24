@@ -1,3 +1,10 @@
+buildscript {
+    repositories {
+        maven { url = uri("https://jitpack.io") }
+        mavenCentral();
+    }
+}
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -63,6 +70,7 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
     implementation ("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2")
+    implementation ("com.github.PhilJay:MPAndroidChart:v3.0.2")
 
 
 
