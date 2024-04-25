@@ -8,4 +8,10 @@
     <color name="gray_900">#212121</color>
     <color name="gray_800">#424242</color>
     <color name="gray_700">#616161</color>
+    <color name="background_grey">#F5F7F9</color>
+    <color name="color_heading_one">#324467</color>
+    <color name="color_heading_two">#4D6189</color>
+    <color name="grey_button_text_color">#a4b0cc</color>
+    <color name="light_grey_border_color">#E5E8F0</color>
+    <color name="window_background">#F5F7F9</color>
 </resources>

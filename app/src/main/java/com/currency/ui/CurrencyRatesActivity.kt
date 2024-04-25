@@ -68,8 +68,6 @@ class CurrencyRatesActivity:  AppCompatActivity() {
         )
         binding.spinnerBaseCurrency.adapter = baseCurrencyAdapter
 
-
-
         binding.spinnerBaseCurrency.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 baseCurrency = CurrencyUtils.baseCurrencies[position]
