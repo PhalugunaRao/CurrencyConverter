@@ -27,43 +27,33 @@ class CurrencyRatesActivity:  AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main_view)
-        // Initialize ViewModel
+
         baseCurrency = CurrencyUtils.baseCurrencies[0]
         setupSpinners()
+        binding.refresh.setOnClickListener {
+            viewModel.fetchExchangeRates(baseCurrency)
+        }
 
-        // Initialize RecyclerView and its adapter
         adapter = ExchangeRateAdapter()
-
         val dividerDrawable = ContextCompat.getDrawable(this, R.drawable.divider)
 
-// Create an item decoration with the divider drawable
         val dividerItemDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         dividerDrawable?.let { dividerItemDecoration.setDrawable(it) }
 
-        // Set RecyclerView's layout manager and adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = adapter
         binding.recyclerView.addItemDecoration(dividerItemDecoration)
 
-
         viewModel = ViewModelProvider(this).get(ExchangeRateViewModel::class.java)
-
-
-
-        // Observe LiveData from ViewModel
         viewModel.exchangeRates.observe(this, Observer { rates ->
-            // Update RecyclerView's data with the new list of exchange rates
             adapter.submitList(rates)
         })
-
-        // Fetch exchange rates when needed
-        //viewModel.fetchExchangeRates("2f18edc1b984a6fe948b6d40deee0d43", "EUR")
-           }
+    }
 
     private fun setupSpinners() {
         val baseCurrencyAdapter = ArrayAdapter(
             this,
-            R.layout.spinner_item_layout,  // Use custom layout
+            R.layout.spinner_item_layout,
             CurrencyUtils.baseCurrencies
         )
         binding.spinnerBaseCurrency.adapter = baseCurrencyAdapter
@@ -75,7 +65,7 @@ class CurrencyRatesActivity:  AppCompatActivity() {
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                // Do nothing
+                // Not implement
             }
         }
     }

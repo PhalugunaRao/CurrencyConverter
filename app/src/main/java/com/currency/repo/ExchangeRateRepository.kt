@@ -28,10 +28,10 @@ class ExchangeRateRepository(private val api: ExchangeRatesApi, private val dao:
                         dao.insertAll(ratesList)
                     }
                 } else {
-                    // Handle error
+                    // Need to Handle error Response
                 }
             } catch (e: Exception) {
-                // Handle exception
+                // Need to Handle error response like
             }
         }
     }

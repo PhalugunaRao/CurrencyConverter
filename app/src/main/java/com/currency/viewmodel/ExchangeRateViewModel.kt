@@ -31,10 +31,8 @@ class ExchangeRateViewModel (application: Application) : AndroidViewModel(applic
             .create(ExchangeRatesApi::class.java)
         repository = ExchangeRateRepository(api, db.exchangeRateDao())
         exchangeRates = repository.exchangeRates
-        //fetchExchangeRates("2f18edc1b984a6fe948b6d40deee0d43", "EUR")
 
     }
-
 
     fun fetchExchangeRates( base: String) {
         viewModelScope.launch {

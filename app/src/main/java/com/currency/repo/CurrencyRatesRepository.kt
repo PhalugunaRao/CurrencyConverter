@@ -2,6 +2,7 @@ package com.currency.repo
 
 import android.util.Log
 import com.currency.api.CurrencyRatesService
+import com.currency.data.CurrencyWeekResponse
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -23,6 +24,17 @@ class CurrencyRatesRepository {
             null
         }
     }
+
+    suspend fun getExchangeRates(apiKey: String, startDate: String, endDate: String,base:String): CurrencyWeekResponse? {
+        return try {
+            val response = service.getExchangeWeeks(apiKey, startDate, endDate,base)
+            response
+        } catch (e: Exception) {
+            null
+        }
+    }
+
+
 
     private fun createOkHttpClient(): OkHttpClient {
         val loggingInterceptor = HttpLoggingInterceptor(object : HttpLoggingInterceptor.Logger {
