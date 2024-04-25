@@ -1,6 +1,14 @@
 package com.currency.util
 
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+
 object CurrencyUtils {
+
+    val currentDate = LocalDate.now()
+    val startDate = currentDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+    val endDate = currentDate.minusDays(5).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+
 
     val API_KEY = "2f18edc1b984a6fe948b6d40deee0d43"
     val baseCurrencies = arrayOf("EUR", "AFN", "ALL", "AMD", "ANG", "AOA", "ARS", "AUD", "AWG", "AZN",

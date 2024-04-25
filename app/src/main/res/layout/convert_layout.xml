@@ -15,43 +15,71 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/color_heading_one"
             android:text="Enter amount:" />
 
         <EditText
             android:id="@+id/editTextAmount"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_46sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:background="@drawable/input_state_default"
+            android:hint="Ex:1"
+            android:paddingStart="@dimen/_12sdp"
             android:inputType="numberDecimal" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/color_heading_one"
             android:text="Select base currency:" />
 
         <Spinner
             android:id="@+id/spinnerBaseCurrency"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp" />
-
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@drawable/selector_bg"
+            android:gravity="center"
+            android:paddingStart="@dimen/_12sdp"
+            android:textColor="@color/color_heading_one"
+            android:textColorHint="@color/grey_button_text_color"
+            android:textSize="@dimen/_12ssp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/color_heading_one"
             android:text="Select target currency:" />
-
         <Spinner
             android:id="@+id/spinnerTargetCurrency"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp" />
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@drawable/selector_bg"
+            android:gravity="center"
+            android:paddingStart="@dimen/_12sdp"
+            android:textColor="@color/color_heading_one"
+            android:textColorHint="@color/grey_button_text_color"
+            android:textSize="@dimen/_12ssp" />
 
         <Button
             android:id="@+id/buttonConvert"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:textSize="@dimen/_14ssp"
+            android:padding="@dimen/_6sdp"
             android:text="Convert" />
 
         <TextView
@@ -59,8 +87,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:textColor="@android:color/black"
-            android:textSize="18sp" />
+            android:textColor="@color/color_heading_one"
+            android:textSize="@dimen/_16ssp" />
     </LinearLayout>
 </RelativeLayout>
 </layout>
